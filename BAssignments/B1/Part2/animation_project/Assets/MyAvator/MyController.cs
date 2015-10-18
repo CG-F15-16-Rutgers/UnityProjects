@@ -2,16 +2,21 @@
 using System.Collections;
 
 public class MyController : MonoBehaviour {
+	public Transform target;
+	NavMeshAgent agent;
 
 	private Animator myAnimator; 
 	// Use this for initialization
 	void Start () {
-	
+		agent = GetComponent<NavMeshAgent> (); 
 		myAnimator = GetComponent<Animator> (); 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		agent.SetDestination (target.position);
+		myAnimator.SetBool ("Run", true);
 	
 		myAnimator.SetFloat ("VSpeed", Input.GetAxis ("Vertical")); 
 		myAnimator.SetFloat ("HSpeed", Input.GetAxis ("Horizontal")); 
